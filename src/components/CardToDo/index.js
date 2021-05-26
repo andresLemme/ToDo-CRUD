@@ -1,6 +1,6 @@
 import React from "react";
 
-export const CardToDo = ({ todo, todoDelete, todoToggleCompleted }) => {
+export const CardToDo = ({ todo, todoDelete, todoToggleCompleted,setTodoEdit }) => {
   return (
     <div className="card mt-2">
       <div className="card-body">
@@ -16,7 +16,7 @@ export const CardToDo = ({ todo, todoDelete, todoToggleCompleted }) => {
         <p className="card-text text-end">{todo.description}</p>
         <hr />
         <div className="d-flex justify-content-end">
-          <button className="btn btn-sm btn-outline-primary">Editar</button>
+          <button className="btn btn-sm btn-outline-primary" onClick={() => setTodoEdit(todo)}>Editar</button>
           <button
             className="btn btn-sm btn-outline-danger ms-2"
             onClick={() => todoDelete(todo.id)}>

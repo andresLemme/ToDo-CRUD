@@ -26,9 +26,13 @@ const initialTodo = [
 
 function App() {
   const [todos, setTodos] = useState(initialTodo);
+  const [todoEdit, setTodoEdit] = useState(null);
 
   const todoDelete = todoId => {
     const changeTodos = todos.filter(todo => todo.id !== todoId);
+    if (todoEdit && todoId === todoEdit.id){
+      setTodoEdit(null)
+    }
 
     setTodos(changeTodos);
   };
@@ -52,19 +56,24 @@ function App() {
     setTodos(changeTodos);
   };
 
-  const todoAdd = (todo) =>{
+  const todoAdd = todo => {
     const newTodo = {
       id: Date.now(),
       ...todo,
-      completed: false
-    }
+      completed: false,
+    };
 
-    const changedTodo = [
-      newTodo,
-      ...todos
-  ]
-    setTodos(changedTodo)
-  }
+    const changedTodo = [newTodo, ...todos];
+    setTodos(changedTodo);
+  };
+
+  const todoUpdate = todoEdit => {
+    const changedTodo = todos.map(todo =>
+      todo.id === todoEdit.id ? todoEdit : todo
+    );
+
+    setTodos(changedTodo);
+  };
 
   return (
     <div className="container mt-4">
@@ -77,10 +86,16 @@ function App() {
             todos={todos}
             todoDelete={todoDelete}
             todoToggleCompleted={todoToggleCompleted}
+            setTodoEdit={setTodoEdit}
           />
         </div>
         <div className="col-4">
-          <TodoForm todoAdd={todoAdd} />
+          <TodoForm
+            todoAdd={todoAdd}
+            todoEdit={todoEdit}
+            todoUpdate={todoUpdate}
+            setTodoEdit={setTodoEdit}
+          />
         </div>
       </div>
     </div>
