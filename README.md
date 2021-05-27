@@ -1,7 +1,7 @@
 
 ## Creación TODO - CRUD
 
-Link: https://todoscrud.netlify.app/\
+Link: https://todoscrud.netlify.app/ \
 Estructura de la aplicación\
  ✅  Componentes\
  ✅  Props\
