@@ -10,7 +10,7 @@ export default function TodoList({
 }) {
   return (
     <div>
-      <h2 className="text-center">Lista de Tareas</h2>
+      <h2 className="text-center display-4">Lista de Tareas</h2>
       {todos.length === 0
       ? (<div className="alert alert-primary"> No tenes texto para mostrar. Agrega una tarea</div>)
       : todos.map((todo, key) => {

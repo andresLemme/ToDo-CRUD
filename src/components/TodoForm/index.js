@@ -60,7 +60,7 @@ export default function TodoForm({ todoAdd, todoEdit, todoUpdate, setTodoEdit })
 
   return (
     <div>
-      <h2>{todoEdit ? "Editar tarea" : "Nueva Tarea"}</h2>
+      <h2 className="text-center display-4">{todoEdit ? "Editar tarea" : "Nueva Tarea"}</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

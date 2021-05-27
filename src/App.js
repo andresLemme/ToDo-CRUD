@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
@@ -24,9 +24,15 @@ const initialTodo = [
   },
 ];
 
+const localTodos = JSON.parse(localStorage.getItem("todos"))
+
 function App() {
-  const [todos, setTodos] = useState(initialTodo);
+  const [todos, setTodos] = useState(localTodos || initialTodo);
   const [todoEdit, setTodoEdit] = useState(null);
+
+  useEffect(() =>{
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
 
   const todoDelete = todoId => {
     const changeTodos = todos.filter(todo => todo.id !== todoId);
